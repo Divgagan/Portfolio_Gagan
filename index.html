@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <!-- ══════════════════════════════════════
+       SECURITY HEADERS (meta-tag layer)
+  ══════════════════════════════════════ -->
+
+  <!-- Content Security Policy: controls what resources can load -->
+  <meta http-equiv="Content-Security-Policy"
+    content="
+      default-src 'self';
+      script-src  'self';
+      style-src   'self' https://fonts.googleapis.com;
+      font-src    'self' https://fonts.gstatic.com;
+      img-src     'self' data: blob:;
+      connect-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com;
+      frame-src   'none';
+      frame-ancestors 'none';
+      base-uri    'self';
+      form-action 'self';
+      object-src  'none';
+      upgrade-insecure-requests;
+    " />
+
+  <!-- Prevent clickjacking -->
+  <meta http-equiv="X-Frame-Options" content="DENY" />
+
+  <!-- Block MIME-type sniffing -->
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+
+  <!-- Control referrer information leaked to external sites -->
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+  <!-- Disable browser features not used by this site -->
+  <meta http-equiv="Permissions-Policy"
+    content="camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()" />
+
+  <!-- ── SEO ── -->
+  <title>Gagan Diwakar — AI Engineer | SVNIT Surat</title>
+  <meta name="description" content="Gagan Diwakar — B.Tech AI student at SVNIT Surat. Building intelligent systems at the intersection of deep learning, computer vision, graph neural networks, and reinforcement learning." />
+  <meta name="keywords" content="Gagan Diwakar, AI Engineer, SVNIT Surat, Deep Learning, Computer Vision, GNN, Reinforcement Learning, Medical Imaging, Portfolio" />
+  <meta name="author" content="Gagan Diwakar" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- ── Open Graph ── -->
+  <meta property="og:title" content="Gagan Diwakar — AI Engineer" />
+  <meta property="og:description" content="Building intelligent systems at the intersection of deep learning, computer vision and reinforcement learning." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://gagandiwkar.dev" />
+
+  <!-- ── Twitter Card ── -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Gagan Diwakar — AI Engineer" />
+  <meta name="twitter:description" content="B.Tech AI @ SVNIT Surat. Deep Learning · GNNs · Medical Imaging · Offline RL." />
+
+  <!-- ── Fonts (preconnect for speed, crossorigin required for CORS) ── -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap"
+    rel="stylesheet"
+    crossorigin />
+
+  <!-- ── Stylesheet ── -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- ── Favicon ── -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>" />
+</head>
+<body>
+
+  <!-- Custom Cursor -->
+  <div id="cur"></div>
+  <div id="cur-o"></div>
+
+  <!-- Neural Network Canvas Background -->
+  <canvas id="bg"></canvas>
+
+  <!-- Film Grain Overlay -->
+  <div class="grain"></div>
+
+  <!-- Faded Name Watermark (barely visible, intentional easter egg) -->
+  <div class="bg-watermark" aria-hidden="true">GAGAN</div>
+
+  <!-- ══════════════════════════════════════════
+       NAVIGATION
+  ══════════════════════════════════════════ -->
+  <nav role="navigation" aria-label="Main navigation">
+    <div class="nav-bg"></div>
+    <div class="nav-i">
+      <a href="#hero" class="logo">G<b>agan</b></a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="nav-r">
+        <div class="avail" aria-label="Status: Open to Work">
+          <span class="avail-d"></span>Open to Work
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ══════════════════════════════════════════
+       HERO
+  ══════════════════════════════════════════ -->
+  <section id="hero" aria-labelledby="hero-title">
+    <div class="w">
+      <div class="hero-wrap">
+        <div class="hero-text">
+          <div class="eyebrow" role="doc-subtitle">
+            <span class="eyebrow-dot"></span>AI Engineer · SVNIT Surat · 2026
+          </div>
+          <h1 class="hero-h" id="hero-title">
+            <span class="l1">Building the Layer</span>
+            <span class="l2">Between Human Intent</span>
+            <span class="l3">and Machine Action.</span>
+          </h1>
+          <p class="hero-p">
+            B.Tech AI student at SVNIT Surat. I work at the intersection of deep learning,
+            computer vision and reinforcement learning — turning research papers into real, deployed products.
+          </p>
+          <div class="cta-row">
+            <a href="#projects" class="btn btn-p" id="cta-projects">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+              View Projects
+            </a>
+            <a href="#contact" class="btn btn-s" id="cta-contact">Get in Touch</a>
+          </div>
+          <div class="stats-strip" aria-label="Quick stats">
+            <div class="stat">
+              <span class="stat-n">6+</span>
+              <span class="stat-l">Projects Built</span>
+            </div>
+            <div class="stat">
+              <span class="stat-n">3+</span>
+              <span class="stat-l">Years Coding</span>
+            </div>
+            <div class="stat">
+              <span class="stat-n">∞</span>
+              <span class="stat-l">Research Curiosity</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero ID Card -->
+        <div class="g hero-card" aria-label="Profile card" role="complementary">
+          <div class="hc-top">
+            <div class="hc-av" aria-hidden="true">G</div>
+            <div>
+              <div class="hc-nm">Gagan Diwakar</div>
+              <div class="hc-rl">AI Engineer · SVNIT Surat · B.Tech AI</div>
+            </div>
+          </div>
+          <div class="hc-div"></div>
+          <div class="hc-row">
+            <span class="hc-k">CGPA</span>
+            <span class="hc-v">7.16 / 10</span>
+          </div>
+          <div class="hc-row">
+            <span class="hc-k">Semester</span>
+            <span class="hc-v">6th — 2023–2027</span>
+          </div>
+          <div class="hc-row">
+            <span class="hc-k">Projects</span>
+            <span class="hc-v">7+ shipped</span>
+          </div>
+          <div class="hc-row">
+            <span class="hc-k">Status</span>
+            <span class="chip chip-g">Open to Work</span>
+          </div>
+          <div class="hc-row hc-row-mt">
+            <span class="hc-k">Focus</span>
+            <span class="chip chip-c">Deep Learning · GNN</span>
+          </div>
+          <div class="hc-div hc-div-mt"></div>
+          <div class="hc-gh">
+            <div>
+              <div class="hc-gh-label">GitHub</div>
+              <div class="hc-gh-link">github.com/Divgagan</div>
+            </div>
+          </div>
+          <div class="hc-contact-row">
+            <a href="https://wa.me/919219106808" target="_blank" rel="noopener noreferrer" class="hc-contact-btn hc-wa" aria-label="WhatsApp Gagan">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+              +91 9219106808
+            </a>
+            <a href="mailto:gagandiwakar748@gmail.com" class="hc-contact-btn hc-mail" aria-label="Email Gagan">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              gagandiwakar748@gmail.com
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       ABOUT
+  ══════════════════════════════════════════ -->
+  <section id="about" class="sec" aria-labelledby="about-title">
+    <div class="w">
+      <div class="sec-label rv">About</div>
+      <h2 class="sec-h rv" id="about-title">Who I <em>Am</em></h2>
+      <p class="sec-sub rv">An AI undergrad who closes the gap between research and reality.</p>
+      <div class="about-g">
+        <div class="g about-main rv">
+          <p>
+            I'm <strong>Gagan</strong>, a B.Tech student in <strong>Artificial Intelligence</strong> at SVNIT Surat
+            with a strong interest in <strong>machine learning</strong>, <strong>deep learning</strong>, and intelligent systems.
+          </p>
+          <p>
+            My work primarily focuses on building practical AI solutions in areas such as
+            <strong>traffic prediction</strong>, <strong>reinforcement learning</strong>, and
+            <strong>medical image analysis</strong>. I have developed projects involving spatio-temporal forecasting,
+            graph neural networks, and CNN-based image classification using frameworks like
+            <strong>PyTorch</strong> and <strong>TensorFlow</strong>.
+          </p>
+          <p>
+            I enjoy working on projects that combine research concepts with real-world implementation —
+            from model development to interactive dashboards and deployment. Currently seeking
+            <strong>internship opportunities in AI/ML and medical imaging</strong> where I can apply my
+            technical skills, contribute to impactful projects, and continue growing as a developer and researcher.
+          </p>
+        </div>
+        <div class="about-side">
+          <div class="g info-card rv rv1">
+            <div class="ic-l">Institution</div>
+            <div class="ic-v"><b>SVNIT Surat</b> · B.Tech in Artificial Intelligence</div>
+          </div>
+          <div class="g info-card rv rv2">
+            <div class="ic-l">Research Interests</div>
+            <div class="ic-v">Machine Learning · Deep Learning · Generative AI · Agentic AI · Reinforcement Learning · Computer Vision</div>
+          </div>
+          <div class="g info-card rv rv3">
+            <div class="ic-l">Open Source</div>
+            <div class="ic-v"><b>github.com/Divgagan</b> · AI &amp; Deep Learning Projects</div>
+          </div>
+          <div class="g info-card rv rv4">
+            <div class="ic-l">Local Setup</div>
+            <div class="ic-v">PyTorch · TensorFlow · Ollama Llama 3.1 · NVIDIA GPU Setup</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       SKILLS
+  ══════════════════════════════════════════ -->
+  <section id="skills" class="sec" aria-labelledby="skills-title">
+    <div class="w">
+      <div class="sec-label rv">Technical Stack</div>
+      <h2 class="sec-h rv" id="skills-title">What I <em>Know</em></h2>
+      <p class="sec-sub rv">Core tools and technologies I use to build production-grade AI systems.</p>
+      <div class="skill-cats rv">
+
+        <div class="g scat">
+          <div class="scat-h">Deep Learning</div>
+          <div class="scat-tags">
+            <span class="stag hot">PyTorch</span>
+            <span class="stag hot">Transformers</span>
+            <span class="stag hot">CNNs</span>
+            <span class="stag">TensorFlow</span>
+            <span class="stag">Keras</span>
+            <span class="stag">GANs</span>
+            <span class="stag">StyleGAN</span>
+            <span class="stag">LSTM</span>
+            <span class="stag">BiLSTM</span>
+          </div>
+        </div>
+
+        <div class="g scat">
+          <div class="scat-h">Computer Vision</div>
+          <div class="scat-tags">
+            <span class="stag hot">OpenCV</span>
+            <span class="stag hot">Medical Imaging</span>
+            <span class="stag">WCE Classification</span>
+            <span class="stag">Segmentation</span>
+            <span class="stag">Transfer Learning</span>
+            <span class="stag">CIFAR</span>
+          </div>
+        </div>
+
+        <div class="g scat">
+          <div class="scat-h">Graphs &amp; RL</div>
+          <div class="scat-tags">
+            <span class="stag hot">GNNs</span>
+            <span class="stag hot">ST-GNN</span>
+            <span class="stag hot">GCN + LSTM</span>
+            <span class="stag">Offline RL</span>
+            <span class="stag">IQL</span>
+            <span class="stag">CQL</span>
+            <span class="stag">GeoPandas</span>
+          </div>
+        </div>
+
+        <div class="g scat">
+          <div class="scat-h">Engineering</div>
+          <div class="scat-tags">
+            <span class="stag hot">Python</span>
+            <span class="stag">Flask</span>
+            <span class="stag">React</span>
+            <span class="stag">CUDA</span>
+            <span class="stag">OpenMP</span>
+            <span class="stag">MPI</span>
+            <span class="stag">Docker</span>
+            <span class="stag">XGBoost</span>
+            <span class="stag">Leaflet.js</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       PROJECTS
+  ══════════════════════════════════════════ -->
+  <section id="projects" class="sec" aria-labelledby="projects-title">
+    <div class="w">
+      <div class="sec-label rv">Work</div>
+      <h2 class="sec-h rv" id="projects-title">Selected <em>Projects</em></h2>
+      <p class="sec-sub rv">End-to-end systems — from dataset to deployment.</p>
+
+      <!-- Featured Project -->
+      <div class="g proj-feat rv" role="article" id="project-traffic">
+        <div>
+          <div class="pf-badge">⭐ Featured · Real-Time AI System</div>
+          <div class="pf-h">MasterTrafficAI</div>
+          <p class="pf-p">
+            Real-time congestion prediction across a 10×10 Surat city grid. BiLSTM captures temporal
+            flow patterns; a Spatial-Temporal GNN encodes road-network topology. Live TomTom + Open-Meteo
+            APIs feed into a Flask + Leaflet.js interactive dashboard.
+          </p>
+          <div class="tags">
+            <span class="tag">BiLSTM</span>
+            <span class="tag">ST-GNN</span>
+            <span class="tag">Flask</span>
+            <span class="tag">TomTom API</span>
+            <span class="tag">Open-Meteo</span>
+            <span class="tag">Leaflet.js</span>
+          </div>
+        </div>
+        <div class="pf-num" aria-label="10 by 10 city grid">
+          <div class="big-n">10×10</div>
+          <div class="big-l">City Grid</div>
+        </div>
+      </div>
+
+      <!-- Project Grid -->
+      <div class="proj-grid">
+
+        <div class="g pc rv" role="article" id="project-crop">
+          <div class="pc-top">
+            <div class="pc-ico ico-g" aria-hidden="true">🌿</div>
+            <span class="arr" aria-hidden="true">↗</span>
+          </div>
+          <div class="pc-h">Crop Disease Detection</div>
+          <p class="pc-p">
+            Distributed image-processing pipeline (Master–Slave architecture). Slave nodes preprocess
+            on-device; CNN classifies healthy vs. diseased leaves. Flask REST API for IoT integration.
+          </p>
+          <div class="tags">
+            <span class="tag">CNN</span>
+            <span class="tag">OpenCV</span>
+            <span class="tag">Flask</span>
+            <span class="tag">Springer 2026</span>
+          </div>
+        </div>
+
+        <div class="g pc rv rv1" role="article" id="project-iql">
+          <div class="pc-top">
+            <div class="pc-ico ico-i" aria-hidden="true">🎓</div>
+            <span class="arr" aria-hidden="true">↗</span>
+          </div>
+          <div class="pc-h">Offline RL Pedagogical Agent</div>
+          <p class="pc-p">
+            IQL-based tutoring agent achieving <strong>85% success rate</strong> on 300 unseen problems
+            vs. 27% CQL baseline (3× improvement). NeurIPS submission 2026.
+          </p>
+          <div class="tags">
+            <span class="tag">IQL</span>
+            <span class="tag">Offline RL</span>
+            <span class="tag">Llama 3.1</span>
+            <span class="tag">NeurIPS 2026</span>
+          </div>
+        </div>
+
+        <div class="g pc rv rv2" role="article" id="project-smartroute">
+          <div class="pc-top">
+            <div class="pc-ico ico-a" aria-hidden="true">🚕</div>
+            <span class="arr" aria-hidden="true">↗</span>
+          </div>
+          <div class="pc-h">SmartRoute Terminal</div>
+          <p class="pc-p">
+            Taxi trip duration predictor on the Porto dataset. XGBoost with Haversine-based
+            1km grid features, served via Flask with a full web UI.
+          </p>
+          <div class="tags">
+            <span class="tag">XGBoost</span>
+            <span class="tag">Haversine</span>
+            <span class="tag">Flask</span>
+            <span class="tag">Porto</span>
+          </div>
+        </div>
+
+        <div class="g pc rv rv3" role="article" id="project-brain">
+          <div class="pc-top">
+            <div class="pc-ico ico-b" aria-hidden="true">🧠</div>
+            <span class="arr" aria-hidden="true">↗</span>
+          </div>
+          <div class="pc-h">Brain Tumour Detection</div>
+          <p class="pc-p">
+            End-to-end MRI classification pipeline with preprocessing, augmentation, and a deep CNN
+            with dropout &amp; learning-rate scheduling for tumour vs. non-tumour detection.
+          </p>
+          <div class="tags">
+            <span class="tag">CNN</span>
+            <span class="tag">TensorFlow</span>
+            <span class="tag">Keras</span>
+            <span class="tag">OpenCV</span>
+          </div>
+        </div>
+
+        <div class="g pc rv rv4" role="article" id="project-cityflow">
+          <div class="pc-top">
+            <div class="pc-ico ico-r" aria-hidden="true">🗺️</div>
+            <span class="arr" aria-hidden="true">↗</span>
+          </div>
+          <div class="pc-h">CityFlow-GNN</div>
+          <p class="pc-p">
+            GCN + LSTM Spatial-Temporal GNN trained on <strong>44.3M NYC taxi trips</strong> across 263 zones;
+            achieved <strong>MAE = 4.86 mph</strong>. Streamlit dashboard with 3D PyDeck route map and ETA calculator.
+          </p>
+          <div class="tags">
+            <span class="tag">GCN + LSTM</span>
+            <span class="tag">GeoPandas</span>
+            <span class="tag">PyDeck</span>
+            <span class="tag">CUDA GPU</span>
+          </div>
+        </div>
+
+        <div class="g pc rv" role="article" id="project-gesture">
+          <div class="pc-top">
+            <div class="pc-ico ico-a" aria-hidden="true">✋</div>
+            <span class="arr" aria-hidden="true">↗</span>
+          </div>
+          <div class="pc-h">Gesture-Controlled Media Player</div>
+          <p class="pc-p">
+            Vision-based HCI system using Mediapipe 3D hand landmarks with temporal smoothing
+            for jitter-free gesture → media control (play/pause, seek, volume). Zero hardware needed.
+          </p>
+          <div class="tags">
+            <span class="tag">Mediapipe</span>
+            <span class="tag">OpenCV</span>
+            <span class="tag">Python</span>
+            <span class="tag">HCI</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       EXPERIENCE / TIMELINE
+  ══════════════════════════════════════════ -->
+  <section id="experience" class="sec" aria-labelledby="experience-title">
+    <div class="w">
+      <div class="sec-label rv">Journey</div>
+      <h2 class="sec-h rv" id="experience-title">My <em>Timeline</em></h2>
+      <p class="sec-sub rv">Academic milestones, research, and what I've shipped.</p>
+      <div class="timeline rv">
+
+        <div class="tl-item">
+          <div class="tl-dot" aria-hidden="true"></div>
+          <div class="tl-y">2025 — Present</div>
+          <div class="tl-role">AI Researcher · IQL Math Tutoring</div>
+          <div class="tl-place">SVNIT Surat · Semester Research Project</div>
+          <p class="tl-p">
+            Replicated and extended a NeurIPS 2025 workshop paper. Replaced Conservative Q-Learning
+            with Implicit Q-Learning for offline RL-based adaptive math tutoring. Designed full
+            training pipeline (train_iql.py, evaluate_policy.py, app.py) and solved value collapse
+            via balanced batch sampling.
+          </p>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot" aria-hidden="true"></div>
+          <div class="tl-y">2024 — 2025</div>
+          <div class="tl-role">Deep Learning Engineer · MasterTrafficAI</div>
+          <div class="tl-place">Personal Project · Surat City</div>
+          <p class="tl-p">
+            Built end-to-end real-time traffic prediction for a 10×10 Surat grid using
+            BiLSTM + Spatial-Temporal GNN. Integrated live TomTom and weather APIs,
+            deployed with Flask + Leaflet.js interactive map.
+          </p>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot" aria-hidden="true"></div>
+          <div class="tl-y">2024</div>
+          <div class="tl-role">ML Engineer · Drug Interaction Prediction</div>
+          <div class="tl-place">SVNIT Surat · Major DL Project</div>
+          <p class="tl-p">
+            Four-person team project building DDI prediction with Graph Attention Networks.
+            Integrated ChemBERTa and BioGPT molecular embeddings with GNNExplainer for
+            interpretable clinical predictions.
+          </p>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-dot" aria-hidden="true"></div>
+          <div class="tl-y">2023 — 2024</div>
+          <div class="tl-role">B.Tech Student · Dept. of Artificial Intelligence</div>
+          <div class="tl-place">SVNIT Surat</div>
+          <p class="tl-p">
+            Core coursework across CUDA/GPGPU computing, Transformers, HPC with OpenMP &amp; MPI,
+            Cloud Computing, and advanced RL theory. Built DL_lab GitHub repository with CNN,
+            LSTM, and transfer learning experiments.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       CONTACT
+  ══════════════════════════════════════════ -->
+  <section id="contact" class="sec" aria-labelledby="contact-title">
+    <div class="w">
+      <div class="sec-label rv">Contact</div>
+      <div class="contact-wrap">
+
+        <div class="g contact-left rv">
+          <div class="cl-pre">Get in touch</div>
+          <h2 class="cl-h" id="contact-title">Let's Build<br/><em>Together</em></h2>
+          <p class="cl-p">
+            Open to internship roles in medical imaging AI, research collaborations, and ambitious
+            deep learning projects. I reply to every message.
+          </p>
+          <div class="clinks">
+            <a href="https://github.com/Divgagan" target="_blank" rel="noopener noreferrer" class="clink" id="link-github">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.1.82-.26.82-.58v-2.04c-3.34.72-4.04-1.6-4.04-1.6-.54-1.38-1.33-1.74-1.33-1.74-1.08-.74.08-.72.08-.72 1.2.08 1.83 1.23 1.83 1.23 1.06 1.82 2.78 1.3 3.46 1 .1-.77.42-1.3.76-1.6-2.66-.3-5.46-1.33-5.46-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02.005 2.04.14 3 .4 2.28-1.55 3.28-1.23 3.28-1.23.66 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.82 1.1.82 2.22v3.3c0 .32.22.7.83.58C20.56 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/>
+              </svg>
+              github.com/Divgagan
+              <span class="clink-arr" aria-hidden="true">↗</span>
+            </a>
+            <a href="mailto:gagandiwakar748@gmail.com" class="clink" id="link-email">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <rect x="2" y="4" width="20" height="16" rx="2"/>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+              </svg>
+              gagandiwakar748@gmail.com
+              <span class="clink-arr" aria-hidden="true">↗</span>
+            </a>
+            <a href="https://www.linkedin.com/in/gagan-diwakar-772134293/" target="_blank" rel="noopener noreferrer" class="clink" id="link-linkedin">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/>
+                <circle cx="4" cy="4" r="2"/>
+              </svg>
+              linkedin.com/in/gagan-diwakar
+              <span class="clink-arr" aria-hidden="true">↗</span>
+            </a>
+            <a href="https://wa.me/919219106808" target="_blank" rel="noopener noreferrer" class="clink" id="link-whatsapp">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+              +91 9219106808 (WhatsApp)
+              <span class="clink-arr" aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="contact-right rv rv1">
+          <div class="g cr-card">
+            <div class="cr-h">🎯 Internship Target</div>
+            <p class="cr-p">
+              Medical Imaging AI — particularly roles involving deep learning for clinical diagnostics,
+              CT/MRI analysis, or pathology. Also open to generative AI and computer vision research roles.
+            </p>
+          </div>
+          <div class="g cr-card">
+            <div class="cr-h">🔬 Research Collaboration</div>
+            <p class="cr-p">
+              Interested in joint work on graph neural networks for biomedical data, offline RL for
+              education, or spatiotemporal prediction systems. NeurIPS / CVPR track experience.
+            </p>
+          </div>
+          <div class="g cr-card">
+            <div class="cr-h">⚡ Response Time</div>
+            <p class="cr-p">
+              I reply within 24 hours via email. For urgent opportunities, LinkedIn DMs work best.
+              All collaborations welcome — student or industry.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════ -->
+  <footer role="contentinfo">
+    <span class="ft">© 2026 <span class="ft-grad">Gagan Diwakar</span> · SVNIT Surat</span>
+    <span class="ft">Built from scratch · No templates.</span>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="main.js" defer></script>
+
+</body>
+</html>

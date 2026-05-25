@@ -1,0 +1,42 @@
+/*
+  # ─────────────────────────────────────────────────────────────
+  # Netlify Security Headers — gagan-portfolio
+  # Applied to every route (/*) on the deployed site.
+  # Docs: https://docs.netlify.com/routing/headers/
+  # ─────────────────────────────────────────────────────────────
+
+  # ── 1. Clickjacking Protection ──────────────────────────────
+  # Prevents this page from being embedded in <iframe> on other sites.
+  X-Frame-Options: DENY
+
+  # ── 2. MIME-Type Sniffing Prevention ────────────────────────
+  # Forces browsers to respect declared Content-Type, blocks sniff attacks.
+  X-Content-Type-Options: nosniff
+
+  # ── 3. XSS Filter (legacy browsers) ────────────────────────
+  X-XSS-Protection: 1; mode=block
+
+  # ── 4. Referrer Policy ──────────────────────────────────────
+  # Sends origin only for same-site; sends nothing to cross-site.
+  Referrer-Policy: strict-origin-when-cross-origin
+
+  # ── 5. Permissions Policy ───────────────────────────────────
+  # Explicitly disables browser APIs this site does NOT use.
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=(), accelerometer=(), gyroscope=(), magnetometer=()
+
+  # ── 6. Content Security Policy ──────────────────────────────
+  # Whitelist ONLY what this portfolio actually needs.
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; frame-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests
+
+  # ── 7. HTTP Strict Transport Security (HSTS) ────────────────
+  # Forces HTTPS for 1 year, including subdomains. Preload-list eligible.
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+
+  # ── 8. Cross-Origin Policies ────────────────────────────────
+  # Prevents cross-origin data leaks (Spectre, CORP/COEP/COOP).
+  Cross-Origin-Opener-Policy: same-origin
+  Cross-Origin-Resource-Policy: same-origin
+  Cross-Origin-Embedder-Policy: require-corp
+
+  # ── 9. Cache Control for static assets ──────────────────────
+  Cache-Control: public, max-age=3600
